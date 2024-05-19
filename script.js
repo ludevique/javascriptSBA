@@ -87,31 +87,39 @@ const CourseInfo = {
       }
     }
   ];
-  
- function getLearnerData(CourseInfo,AssignmentGroup,LearnerSubmissions){
-    let students = {};//we declared an empty object where the data will be push into
 
+  //---------------------------------------------
+  //Start our work here.
+  //let declare an empty arrays which will contain our objects.
 
-    LearnerSubmissions.forEach(submission =>{
-        const learnerID = submission.learner_id;
-        const assignmentID = submission.assignment_id;
-        if(!students[learnerID]){
-            students[students] = {
-                id: learnerID,
-                totalScore: 0,
-                totalPossible:0,
-                scores:{}
-            };
+  let finalProject = [];
+ function getLearnerData(CourseInfo,AssignG,LearnerSubmissions){
+     //Let start by validating the data.
+     try{
+        if(AssignmentGroup.course_id !== CourseInfo.id){
+           throw "not recognized this!"; 
         }
-        let Assignment = AssignmentGroup.assignments.find(Assignment => assignment.id === assignmentID);
-        if (Assignment){
-            students[studentID].totalScore += submission.submission.score;
-            students[studentID].totalPossible += difAssignment.points_possible;
-            students[studentID].score[assignmentID] =submission.score / assignment.points_possible*100;        
-        }
-    }); return students
+     }catch(error) {
+        console.error(error)
+     };
+
+     //Now let get the learner's ids.
+      //note that they have to be 'unique'
+      let IDS = [];
+      let keys = [];
+      for(let j = 1; j < LearnerSubmissions.length; j++)
+        IDS.push(LearnerSubmissions[j].learner_id);
+      IDS = [...new Set(IDS)];
+      for(let i = 0; i < IDS.length; i++) keys.push("id");
+      let idsResult = keys.map((key,index) => ({[key]: IDS[index] }));
+      
+      console.log(idsResult)
+      return idsResult
+    
  }
+ getLearnerData(LearnerSubmissions)
 
- //just for trying
- getLearnerData(1,4,7)
+  
+  
+
  
