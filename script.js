@@ -105,21 +105,23 @@ const CourseInfo = {
 
      //Now let get the learner's ids.
       //note that they have to be 'unique'
-      let IDS = [];
-      let keys = [];
-      for(let j = 1; j < LearnerSubmissions.length; j++)
-        IDS.push(LearnerSubmissions[j].learner_id);
-      IDS = [...new Set(IDS)];
-      for(let i = 0; i < IDS.length; i++) keys.push("id");
-      let idsResult = keys.map((key,index) => ({[key]: IDS[index] }));
       
-      console.log(idsResult)
-      return idsResult
-    
  }
  getLearnerData(LearnerSubmissions)
 
   
   
-
- 
+ let IDS = [];
+ let keys = [];
+ function names(learnerSubmission) {
+   
+     for(let j = 1; j < LearnerSubmissions.length; j++)
+       IDS.push(LearnerSubmissions[j].learner_id);
+     IDS = [...new Set(IDS)];
+     for(let i = 0; i < IDS.length; i++) keys.push("id");
+     let idsResult = keys.map((key,index) => ({[key]: IDS[index] }));
+     
+     console.log(idsResult)
+     return idsResult
+ }
+ names(LearnerSubmissions)
